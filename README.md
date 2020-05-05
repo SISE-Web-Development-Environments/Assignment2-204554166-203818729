@@ -3,7 +3,7 @@
  https://sise-web-development-environments.github.io/assignment2-daniel-ben-simon-eran-toutian/
 
 # Credits
-Developed and solved by Daniel Ben Simon - 204554166 & Eran toutian - 203818729
+Developed and solved by Daniel Ben Simon - 204554166 & Eran Toutian - 203818729
 
 Students 3th year of Information and Software Systems Engineering, Ben Gurion University of the Negev, Israel.
 
