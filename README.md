@@ -1,6 +1,6 @@
 # Pacman - Web Environments Development
 
- https://sise-web-development-environments.github.io/assignment2-daniel-ben-simon-eran-toutian/
+https://sise-web-development-environments.github.io/Assignment2-204554166-203818729/
 
 # Credits
 Developed and solved by Daniel Ben Simon - 204554166 & Eran Toutian - 203818729
