@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+  <script src="PacmanApp.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <img id="pacmanUp" style="display: none" src="resource\\pacmanU.gif"/>
+    <img id="pacmanDown" style="display: none" src="resource\\pacmanD.gif"/>
+    <img id="pacmanLeft" style="display: none" src="resource\\pacmanL.gif"/>
+    <img id="pacmanRight" style="display: none" src="resource\\pacmanR.gif"/>
+
+  <div class="wrapper">
+    <div class="left">
+      <h3>Welcome to Pacman Game</h3>
+      <img src="pacman.jpg" alt="pacman_image">
+      <div id="About" class="about">
+        <!-- Trigger the modal with a button -->
+        <button type="btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">About</button>
+      </div>
+    </div>
+    <div class="right">
+      <div class="tabs">
+        <ul>
+          <li class="register_li">Register</li>
+          <li class="login_li">login</li>
+        </ul>
+      </div>
+
+      <div class="register">
+        <div class="input_field">
+          <input type="text" id="userName" placeholder="Username" class="input">
+        </div>
+        <div class="input_field">
+          <input type="text" id="email" placeholder="E-mail" class="input">
+        </div>
+        <div class="class input_field">
+          <input type="text" id="firstName" placeholder="First Name" class="input">
+        </div>
+        <div class="class input_field">
+          <input type="text" id="lastName" placeholder="Last Name" class="input">
+        </div>
+        <div class="input_field">
+          <input type="password" id="password" placeholder="Password" class="input">
+        </div>
+        <div class="input_field">
+          <input type="date" id="birthday" name="birthday" class="input">
+        </div>
+        <div class="btn" onclick="registerUser()"><a href="#">Register</a></div>
+      </div>
+
+      <div class="login">
+        <div class="input_field">
+          <input type="text" id="logInUserName" placeholder="User Name" class="input">
+        </div>
+        <div class="input_field">
+          <input type="password" id="logInPassword" placeholder="Password" class="input">
+        </div>
+        <div class="btn" onclick="logIn()"><a href="#">Login</a></div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">About</h4>
+        </div>
+        <div class="modal-body">
+          <p><b>Welcome to our Game!</b></p>
+          <p> We are Eran Toutian and Daniel Ben Simon, Third year of Information Systems and Software Engineering
+             students in Ben-Gurion University and partners in works since first year. </p>
+          <P>A little of the difficulties we ran into this project was fitting the board, generate the monsters and search good soundtrack.</P>
+          <p><b>In this project we used jQuery Plugin like: </b></p>
+          <p>  &emsp;- DOM Traversal and Manipulation, for example </p>
+          <p> &emsp;&emsp;&emsp;&emsp; $(".login_li").click(function(){</p>
+            <p>  &emsp;&emsp;&emsp;&emsp;&emsp; $(this).addClass("active");</p>
+            <p>  &emsp;&emsp;&emsp;&emsp;&emsp; $(".register_li").removeClass("active");</p>
+            <p>  &emsp;&emsp;&emsp;&emsp;&emsp; $(".login").show(); </p>
+            <p>  &emsp;&emsp;&emsp;&emsp;&emsp; $(".register").hide();</p>
+            <p> &emsp;&emsp;&emsp;&emsp;  }) </p>
+          <p> &emsp; - Event Handling, for example: </p>
+            <p> &emsp;&emsp;&emsp;&emsp;   slider.oninput = function() {</p>
+            <p>  &emsp;&emsp;&emsp;&emsp;&emsp; outputSlider.innerHTML = this.value; </p>
+            <p> &emsp;&emsp;&emsp;&emsp;  } </p>
+          <p><b>Template we used in this project:</b></p>
+            <p> &emsp; <u style="text-decoration: underline">Modal window + Bootstrap:</u></P>
+              <P> &emsp;&emsp;&emsp; https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js</p>
+              <P> &emsp;&emsp;&emsp; https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css</p>
+                <p> &emsp; <u style="text-decoration: underline">jQuery code: </u></P>
+              <P> &emsp;&emsp;&emsp; https://code.jquery.com/jquery-3.4.0.min.js</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="settingsPage animate" onfocus="displayValue()" >
+      <!--my Modal content-->
+    <div class="my-modal-content">
+      <div class="my-modal-header">
+        <h1 data-text="Game Settings" class="my-modal-title"><span>Game Settings</span></h1>
+      </div>
+      <div class="my-modal-body">
+        <div class="keys">
+          <h2 class="settingsLabels">Keys to play:  <label class="labelBall" style="color: red;">  **by default the keys will be keyboard arrows</label></h2> 
+          <input type="text" id="keyUp" onkeydown="setKeyCodeUp(event)" placeholder="Up" class="input">
+          <input type="text" id="keyDown" onkeydown="setKeyCodeDown(event)" placeholder="Down" class="input">
+          <input type="text" id="keyLeft" onkeydown="setKeyCodeLeft(event)" placeholder="Left" class="input">
+          <input type="text" id="keyRight" onkeydown="setKeyCodeRight(event)" placeholder="Right" class="input">
+        </div>
+        <h2 class="settingsLabels">Number of balls:</h2>
+        <div class="slidecontainer">
+          <input type="range" min="50" max="90" value="50" class="slider" id="myRange">
+          <strong>Value: </strong><span id="numOfBalls"></span>
+        </div>
+        <div class="ballsColorsPicker">
+          <label class="settingsLabels">Select the first food color:  </label>
+          <input type="color" id="ball1" name="favcolor" value="#ff0000">  <label class="labelBall">   5 points</label><br>
+          <label class="settingsLabels">Select the second food color:  </label>
+          <input type="color" id="ball2" name="favcolor" value="#3F51B5">  <label class="labelBall">   15 points</label><br>
+          <label class="settingsLabels">Select the third food color:  </label>
+          <input type="color" id="ball3" name="favcolor" value="#06ec17">  <label class="labelBall">   25 points</label><br>
+        </div>
+        <label class="settingsLabels"> Game Time:  </label>
+        <input type="text" id="timeForGame" placeholder="min 60 seconds"> <label class="labelBall">  seconds</label></input><br>
+        <label class="settingsLabels" >Choose how much monsters you want:  </label>
+        <select id="numOfMonsters">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <div class="my-modal-footer">
+        <ul>
+        <li><button type="button" onclick="randomConfigurations()" class="settingsButton" data-dismiss="modal">Generate Random</button></li>
+        <li><button type="button" onclick="setGameConfigurations()" class="settingsButton" data-dismiss="modal">Save Settings</button></li>
+        </ul>
+      </div>
+    </div>
+  
+</div>
+<div class="gamePage">
+  <table class="gameRowDetails">
+    <tr>
+      <td>
+        <div class="player_name">
+          Name: <input id="lblName" type="text" /> 
+        </div>
+      </td>
+      <td>
+        <div class="player_score">
+        Score: <input id="lblScore" type="text" /> 
+        </div>
+      </td>
+      <td>
+        <div class="game_time">
+          Time: <input id="lblTime" type="text" />
+        </div>
+      </td>
+      <td>
+        <div class="game_life">
+          Lives: <input id="lblLife" type="text"/>
+        </div>
+      </td>
+      <td>
+        <div class="btn" onclick="Start()"><a href="#">Start to play</a></div>
+      </td>
+    </tr> 
+  </table>
+  <div class="canvasWrapper">
+    <canvas class="canvas" id="canvas2" height="654" width="1200">
+    </canvas>
+  </div>
+</div>
+<div class="settingsGamePageWarrper" >
+  <table class="settingsTable" height="287.7" width="5" >
+    <tr id="keysRow">
+      <strong style="text-decoration: underline;">Settings</strong><br>
+      <label  style="text-decoration: underline;">Key Up: </label> <label class="settingsRows" id="KeysRowUp" type="text"></label> <br>
+      <label  style="text-decoration: underline;">Key Down: </label> <label class="settingsRows" id="KeysRowDown" type="text"></label> <br>
+      <label  style="text-decoration: underline;">Key Left: </label> <label class="settingsRows" id="KeysRowLeft" type="text"></label> <br>
+      <label  style="text-decoration: underline;">Key Right: </label> <label class="settingsRows" id="KeysRowRight" type="text"></label> <br><br>
+    </tr>
+    <tr class="settingsRows" id="foodCounterRow">
+      <label  style="text-decoration: underline;">Number of balls: </label> <label class="settingsRows" id="foodCounter" type="text"></label><br><br>
+    </tr>
+    <tr class="settingsRows" id="ballsColorsRow">
+      <label  style="text-decoration: underline;">5 points food: </label> <span class="dot" id="ball5" ></span><br>
+        <label  style="text-decoration: underline;">15 points food: </label> <span class="dot" id="ball15"></span><br>
+          <label  style="text-decoration: underline;">25 points food: </label> <span class="dot" id="ball25"></span><br>
+    </tr>
+    <tr class="settingsRows" id="gameTimeRow">
+      <label  style="text-decoration: underline;">Game time: </label> <label class="settingsRows" id="time" type="text"></label><br><br>
+    </tr>
+    <tr class="settingsRows" id="monsterNumberRow">
+      <label  style="text-decoration: underline;">Number of monsters: </label> <label class="settingsRows" id="monsterNumber" type="text"></label><br>
+    </tr>
+    <br>
+    <footer id="credits"><Strong> © Daniel Ben-Simon & Eran Toutian </Strong></footer>
+  </table>
+</div>
+
+</body>
+
+</html>
